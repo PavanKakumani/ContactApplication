@@ -2,7 +2,8 @@
 Sample Contact application using Asp.net Core 6.1 web application using Localdb
 
 Sample Database Script:
-1. Create one database with name "Sampledb" and run the below "create table" scripts.
+1. To create local database using Visual studio 2022, please refer the link https://docs.microsoft.com/en-us/visualstudio/data-tools/create-a-sql-database-by-using-a-designer?view=vs-2022
+2. Create one database with name "Sampledb" and run the below "create table" scripts.
 
 USE [Sampledb]
 GO

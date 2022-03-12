@@ -17,7 +17,7 @@ GO
 
 CREATE TABLE [dbo].[Users] (
     [Id]       INT           IDENTITY (1, 1) NOT NULL,
-    [Email]    NCHAR (10)    NOT NULL,
+    [Email]    NVARCHAR (50) NOT NULL,
     [Password] NVARCHAR (50) NOT NULL,
     [Secret]   NVARCHAR (50) NOT NULL
 );

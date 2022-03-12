@@ -1,0 +1,51 @@
+﻿#nullable disable
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using ContactApplication.Data;
+using ContactApplication.Model;
+
+namespace ContactApplication.Pages.Contacts
+{
+    public class DeleteModel : PageModel
+    {
+        private readonly ContactApplication.Data.SampledbContext _context;
+
+        public DeleteModel(ContactApplication.Data.SampledbContext context)
+        {
+            _context = context;
+        }
+
+        [BindProperty]
+        public Contact Contact { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(int id)
+        {
+            Contact = await _context.Contacts.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (Contact == null)
+            {
+                return NotFound();
+            }
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+
+            Contact = await _context.Contacts.FindAsync(id);
+
+            if (Contact != null)
+            {
+                _context.Contacts.Remove(Contact);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
+        }
+    }
+}
